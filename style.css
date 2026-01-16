@@ -1,2 +1,8 @@
 body{
 	background-color: #c8a2c8;  
+    margin-left: 20%;
+    margin-right: 20%;
+    border: 2px dotted black;
+    padding: 10 px 10px 10px 10 px;
+    font-family: sans-serif;
+}
