@@ -23,3 +23,128 @@
 <a target="_blank" href="https://icons8.com/icon/7518/snowflake">Новый год</a> иконка от <a target="_blank" href="https://icons8.com">Icons8</a>    
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Мой сайт — Шифр Цезаря</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            line-height: 1.6;
+        }
+        h2 {
+            color: #2c3e50;
+        }
+        .task {
+            margin-bottom: 25px;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Текущая дата -->
+    <p><strong>Сегодня:</strong> <span id="16 января"></span></p>
+
+    <h1>Блог: Решение задач по шифру Цезаря</h1>
+
+    <div class="task">
+        <h2>1. Определить ключи шифра Цезаря</h2>
+        <p><strong>а. АПЕЛЬСИН → САЦЬНВЩЮ</strong></p>
+        <p>Используем русский алфавит без «Ё» (32 буквы):</p>
+        <pre>
+А=0, Б=1, В=2, Г=3, Д=4, Е=5, Ж=6, З=7, И=8, Й=9,
+К=10, Л=11, М=12, Н=13, О=14, П=15, Р=16, С=17, Т=18, У=19,
+Ф=20, Х=21, Ц=22, Ч=23, Ш=24, Щ=25, Ъ=26, Ы=27, Ь=28, Э=29, Ю=30, Я=31
+        </pre>
+        <p>Проверяем сдвиг для каждой пары:</p>
+        <ul>
+            <li>А(0) → С(17): (0 + k) mod 32 = 17 ⇒ k = 17</li>
+            <li>П(15) → А(0): (15 + 17) mod 32 = 32 mod 32 = 0 ✔</li>
+            <li>Е(5) → Ц(22): 5 + 17 = 22 ✔</li>
+            <li>Л(11) → Ь(28): 11 + 17 = 28 ✔</li>
+            <li>Ь(28) → Н(13): 28 + 17 = 45 mod 32 = 13 ✔</li>
+            <li>С(17) → В(2): 17 + 17 = 34 mod 32 = 2 ✔</li>
+            <li>И(8) → Щ(25): 8 + 17 = 25 ✔</li>
+            <li>Н(13) → Ю(30): 13 + 17 = 30 ✔</li>
+        </ul>
+        <p>✅ Ключ: <strong>k = 17</strong></p>
+
+        <p><strong>б. АБРИКОС → ЫЬЛГЕЙМ</strong></p>
+        <ul>
+            <li>А(0) → Ы(27): k = 27</li>
+            <li>Б(1) + 27 = 28 → Ь ✔</li>
+            <li>Р(16) + 27 = 43 mod 32 = 11 → Л ✔</li>
+            <li>И(8) + 27 = 35 mod 32 = 3 → Г ✔</li>
+            <li>К(10) + 27 = 37 mod 32 = 5 → Е ✔</li>
+            <li>О(14) + 27 = 41 mod 32 = 9 → Й ✔</li>
+            <li>С(17) + 27 = 44 mod 32 = 12 → М ✔</li>
+        </ul>
+        <p>✅ Ключ: <strong>k = 27</strong></p>
+    </div>
+
+    <div class="task">
+        <h2>2. Расшифровать сообщения (0 &lt; k &lt; 32)</h2>
+        <p><strong>а. ФХНЗКЧ</strong></p>
+        <p>Буквы: Ф(20), Х(21), Н(13), З(7), К(10), Ч(23)</p>
+        <p>Пробуем k = 5:</p>
+        <ul>
+            <li>(20 − 5) mod 32 = 15 → П</li>
+            <li>(21 − 5) = 16 → Р</li>
+            <li>(13 − 5) = 8 → И</li>
+            <li>(7 − 5) = 2 → В</li>
+            <li>(10 − 5) = 5 → Е</li>
+            <li>(23 − 5) = 18 → Т</li>
+        </ul>
+        <p>Получаем: <strong>ПРИВЕТ</strong></p>
+        <p>✅ Расшифровка: <strong>ПРИВЕТ</strong>, ключ <strong>k = 5</strong></p>
+
+        <p><strong>б. ЦЩЕБФ</strong></p>
+        <p>Буквы: Ц(22), Щ(25), Е(5), Б(1), Ф(20)</p>
+        <p>Пробуем k = 20:</p>
+        <ul>
+            <li>(22 − 20) = 2 → В</li>
+            <li>(25 − 20) = 5 → Е</li>
+            <li>(5 − 20) = −15 mod 32 = 17 → С</li>
+            <li>(1 − 20) = −19 mod 32 = 13 → Н</li>
+            <li>(20 − 20) = 0 → А</li>
+        </ul>
+        <p>Получаем: <strong>ВЕСНА</strong></p>
+        <p>✅ Расшифровка: <strong>ВЕСНА</strong>, ключ <strong>k = 20</strong></p>
+    </div>
+
+    <div class="task">
+        <h2>3. Зашифровать фамилию «Хажбиева» с ключом 10</h2>
+        <p>Фамилия: <strong>Х А Ж Б И Е В А</strong></p>
+        <p>Преобразуем каждую букву (алфавит без «Ё», 32 буквы):</p>
+        <ul>
+            <li>Х = 21 → (21 + 10) mod 32 = 31 → Я</li>
+            <li>А = 0  → (0 + 10) = 10 → К</li>
+            <li>Ж = 6  → (6 + 10) = 16 → Р</li>
+            <li>Б = 1  → (1 + 10) = 11 → Л</li>
+            <li>И = 8  → (8 + 10) = 18 → Т</li>
+            <li>Е = 5  → (5 + 10) = 15 → П</li>
+            <li>В = 2  → (2 + 10) = 12 → М</li>
+            <li>А = 0  → (0 + 10) = 10 → К</li>
+        </ul>
+        <p>✅ Зашифрованная фамилия: <strong>ЯКРЛТПМК</strong></p>
+    </div>
+
+    <script>
+        // Вставляем текущую дату
+        const now = new Date();
+        const options = { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric', 
+            weekday: 'long' 
+        };
+        document.getElementById('current-date').textContent = now.toLocaleDateString('ru-RU', options);
+    </script>
+</body>
+</html>
